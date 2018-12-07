@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+{% block header %}
+  <h1>{% block title %}Temperature Readings{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <table style="width:100%">
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Temperature (ºC)</th>
+        <th>Timestamp</th>
+    </tr>
+  {% for temperature in temperatures %}
+    <tr>
+        <td>{{ temperature['id']}}</td>
+        <td>{{ temperature['description']}}</td>
+        <td>{{ temperature['sensor_reading']}}</td>
+        <td>{{ temperature['created']}}</td>
+    </tr>
+    {% if not loop.last %}
+    {% endif %}
+  {% endfor %}
+{% endblock %}
+</table>
