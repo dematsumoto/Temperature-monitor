@@ -13,9 +13,8 @@ bp = Blueprint('dashboard', __name__)
 def index():
     db = get_db()
     temperatures = db.execute(
-        'SELECT t.id, sensor_reading, description, created'
-        ' FROM temperature t JOIN user u ON t.owner_id = u.id'
-        ' WHERE u.id = ?', (g.user['id'],)
+        'SELECT id, sensor_reading, description, created'
+        ' FROM temperature  WHERE owner_id = ?', (g.user['id'],)
     ).fetchall()
 
     return render_template('dashboard/index.html', temperatures=temperatures)
