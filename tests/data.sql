@@ -5,4 +5,4 @@ VALUES
 
 INSERT INTO temperature (owner_id, description, sensor_reading, created)
 VALUES
-  (101, 'test sensor', '33', '2018-01-01 00:00:00');
+  (1, 'test sensor', '33', '2018-01-01 00:00:00');
