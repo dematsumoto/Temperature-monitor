@@ -1,5 +1,5 @@
 import atexit
-from flaskr import temp_reader
+from flaskr.raspberry import temp_reader
 
 from apscheduler.schedulers.background import BackgroundScheduler
 
@@ -9,6 +9,7 @@ def get_temp():
 
 
 def start_job():
+    get_temp()
     scheduler = BackgroundScheduler()
     scheduler.add_job(func=get_temp, trigger="interval", minutes=3)
     scheduler.start()

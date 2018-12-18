@@ -10,7 +10,8 @@ def measure_temp():
 def _get_temp():
     is_compatible = False  #in case this code run outside UNIX systems
 
-    temp = '66.6' if not is_compatible else os.popen("vcgencmd measure_temp").readline()
+    temp = 'temp=61.9ºC' if not is_compatible else os.popen("vcgencmd measure_temp").readline()
+    temp = temp.replace("ºC", "")
     return temp.replace("temp=", "")
 
 
@@ -22,8 +23,8 @@ def _get_db():
 def _save_to_db(temp):
     conn, db = _get_db()
     db.execute(
-        'INSERT INTO temperature (owner_id, description, sensor_reading, created)' 
-        ' VALUES (1, \'pi internal sensor\', ?, DATETIME(\'NOW\'))', (temp,)
+        'INSERT INTO temperature (device_id, sensor_reading, created)' 
+        ' VALUES (1, ?, DATETIME(\'NOW\'))', (temp,)
     )
     conn.commit()
     conn.close()
