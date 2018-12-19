@@ -39,6 +39,10 @@ def create_app(test_config=None):
     app.register_blueprint(dashboard.bp)
     app.add_url_rule('/', endpoint='index')
 
+    from . import device_manager
+    app.register_blueprint(device_manager.bp)
+    app.add_url_rule('/', endpoint='devices')
+
     from . import scheduler
     scheduler.start_job()
 

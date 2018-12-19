@@ -13,7 +13,7 @@ CREATE TABLE temperature (
 CREATE TABLE device (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   owner_id INTEGER NOT NULL,
-  description TEXT NOT NULL,
+  description TEXT UNIQUE NOT NULL,
   FOREIGN KEY (owner_id) REFERENCES user (id)
 );
 

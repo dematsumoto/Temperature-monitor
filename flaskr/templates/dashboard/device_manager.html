@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Device Manager{% endblock %}</h1>
+  <a class="action" href="{{ url_for('dashboard.index') }}">Back to Dashboard</a>
+{% endblock %}
+
+{% block content %}
+    <form method="post" action="/add_device">
+    <label for="description">New Device Name</label>
+    <input name="description" id="description" value="{{ request.form['description'] }}" required>
+    <input type="submit" value="Add Device">
+    </form>
+
+    <h1>Devices list</h1>
+    <table style="width:100%">
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+    </tr>
+  {% for device in devices %}
+    <tr>
+        <td>{{ device['id']}}</td>
+        <td>{{ device['description']}}</td>
+    </tr>
+    {% if not loop.last %}
+    {% endif %}
+  {% endfor %}
+    </table>
+{% endblock %}

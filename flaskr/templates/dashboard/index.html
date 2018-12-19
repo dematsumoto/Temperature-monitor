@@ -3,6 +3,9 @@
 
 {% block header %}
   <h1>{% block title %}Temperature Readings{% endblock %}</h1>
+  {% if g.user %}
+    <a class="action" href="{{ url_for('devices.device_manager') }}">Manage Devices</a>
+  {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -23,5 +26,5 @@
     {% if not loop.last %}
     {% endif %}
   {% endfor %}
+    </table>
 {% endblock %}
-</table>

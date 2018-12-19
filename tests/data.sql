@@ -13,4 +13,4 @@ INSERT INTO device (owner_id, description)
 VALUES
   (1, 'test sensor 1'),
   (1, 'test sensor 2'),
-  (3, 'test sensor 3');
+  (2, 'test sensor 3');
