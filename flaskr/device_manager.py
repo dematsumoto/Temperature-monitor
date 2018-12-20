@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, render_template, g, request, flash, redirect, url_for
+    Blueprint, render_template, g, request, flash, redirect, url_for, abort
 )
 
 from flaskr.auth import login_required
@@ -48,3 +48,27 @@ def add_device():
 
     return render_template('dashboard/device_manager.html')
 
+
+def get_device(id):
+    device = get_db().execute(
+        'SELECT id, owner_id FROM device'
+        ' WHERE id = ?', (id,)
+    ).fetchone()
+
+    if device is None:
+        abort(404, "Device id {0} doesn't exist.".format(id))
+
+    if device['owner_id'] != g.user['id']:
+        abort(403)
+
+    return device
+
+
+@bp.route('/<int:id>/delete', methods=('POST',))
+@login_required
+def delete(id):
+    get_device(id)
+    db = get_db()
+    db.execute('DELETE FROM device WHERE id = ?', (id,))
+    db.commit()
+    return redirect(url_for('devices.device_manager'))
