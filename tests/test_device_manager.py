@@ -21,15 +21,21 @@ def test_add_device(client, auth):
     assert response_init.status_code == 200
     assert b'test device 1' not in response_init.data
 
-    client.post('/add_device', data={'description': 'test device 1'})
+    client.post('/add_device', data={'device_id': '999', 'description': 'test device 1'})
 
     response = client.get('/devices')
     assert response.status_code == 200
     assert b'test device 1' in response.data
 
 
+def test_add_device_without_id(client, auth):
+    auth.login()
+    response = client.post('/add_device', data={'device_id': '', 'description': 'test device'})
+    assert b'Device ID is required.' in response.data
+
+
 def test_add_device_without_description(client, auth):
     auth.login()
-    response = client.post('/add_device', data={'description': ''})
+    response = client.post('/add_device', data={'device_id': '1000', 'description': ''})
     assert b'Description is required.' in response.data
 

@@ -9,6 +9,8 @@
     <form method="post" action="/add_device">
     <label for="description">New Device Name</label>
     <input name="description" id="description" value="{{ request.form['description'] }}" required>
+    <label for="device_id">Device ID</label>
+    <input name="device_id" id="device_id" value="{{ request.form['device_id'] }}" required>
     <input type="submit" value="Add Device">
     </form>
 

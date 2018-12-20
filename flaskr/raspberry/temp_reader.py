@@ -24,7 +24,7 @@ def _save_to_db(temp):
     conn, db = _get_db()
     db.execute(
         'INSERT INTO temperature (device_id, sensor_reading, created)' 
-        ' VALUES (1, ?, DATETIME(\'NOW\'))', (temp,)
+        ' VALUES (555, ?, DATETIME(\'NOW\'))', (temp,)
     )
     conn.commit()
     conn.close()

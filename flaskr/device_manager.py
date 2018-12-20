@@ -24,8 +24,12 @@ def device_manager():
 @login_required
 def add_device():
     if request.method == 'POST':
+        device_id = request.form['device_id']
         description = request.form['description']
         error = None
+
+        if not device_id:
+            error = 'Device ID is required.'
 
         if not description:
             error = 'Description is required.'
@@ -35,9 +39,9 @@ def add_device():
         else:
             db = get_db()
             db.execute(
-                'INSERT INTO device (owner_id, description)'
-                ' VALUES (?, ?)',
-                (g.user['id'], description)
+                'INSERT INTO device (id, owner_id, description)'
+                ' VALUES (?, ?, ?)',
+                (device_id, g.user['id'], description)
             )
             db.commit()
             return redirect(url_for('devices.device_manager'))
