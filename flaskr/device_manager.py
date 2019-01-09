@@ -59,7 +59,7 @@ def get_device(id):
         abort(404, "Device id {0} doesn't exist.".format(id))
 
     if device['owner_id'] != g.user['id']:
-        abort(403)
+        abort(403, "Permission denied.")
 
     return device
 

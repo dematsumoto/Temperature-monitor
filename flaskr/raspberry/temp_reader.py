@@ -8,7 +8,10 @@ def measure_temp():
 
 
 def _get_temp():
-    is_compatible = False  #in case this code run outside UNIX systems
+    # is_compatible = False  #in case this code run outside UNIX systems
+
+    rpi_supported = os.environ.get('RPI_SUPPORTED', 'False')
+    is_compatible = True if rpi_supported.lower() == 'true' else False
 
     temp = 'temp=61.9ºC' if not is_compatible else os.popen("vcgencmd measure_temp").readline()
     temp = temp.replace("ºC", "")
