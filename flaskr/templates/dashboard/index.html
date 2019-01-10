@@ -5,6 +5,7 @@
   <h1>{% block title %}Temperature Readings{% endblock %}</h1>
   {% if g.user %}
     <a class="action" href="{{ url_for('devices.device_manager') }}">Manage Devices</a>
+    <a class="action" href="{{ url_for('statistics.statistics') }}">Statistics</a>
   {% endif %}
 {% endblock %}
 

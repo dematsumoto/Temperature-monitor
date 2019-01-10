@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Device Manager{% endblock %}</h1>
+    <a class="action" href="{{ url_for('dashboard.index') }}">Back to Dashboard</a>
+{% endblock %}
+
+{% block content %}
+    <select>
+        {% for device in devices %}
+            <option value="{{ device['description']}}">{{ device['description']}}</option>
+
+            {% if not loop.last %}
+            {% endif %}
+        {% endfor %}
+    </select>
+    <input type="submit" value="Load Statistics!">
+{% endblock %}

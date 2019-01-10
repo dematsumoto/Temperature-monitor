@@ -43,6 +43,9 @@ def create_app(test_config=None):
     app.register_blueprint(device_manager.bp)
     app.add_url_rule('/', endpoint='devices')
 
+    from . import statistics
+    app.register_blueprint(statistics.bp)
+
     from . import scheduler
     scheduler.start_job()
 
