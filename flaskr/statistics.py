@@ -23,10 +23,16 @@ def statistics():
 @bp.route('/<int:id>/stats')
 @login_required
 def get_data(id):
+
     db = get_db()
-    data = db.execute(
+    data = []
+    cursor = db.execute(
         'SELECT sensor_reading, created FROM temperature'
-        ' WHERE device_id = ?', (id,)
+        ' WHERE device_id = ?'
+        'LIMIT 150', (id,)
     ).fetchall()
+
+    for row in cursor:
+        data.append(list(row))
 
     return data

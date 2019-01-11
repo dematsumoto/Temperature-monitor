@@ -1,7 +1,3 @@
-import pytest
-from flaskr.db import get_db
-
-
 def test_login_required(client):
     response = client.get('/devices')
     assert response.headers['Location'] == 'http://localhost/auth/login'

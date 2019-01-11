@@ -6,13 +6,17 @@
 {% endblock %}
 
 {% block content %}
-    <select>
+    <form name="devices" id="deviceStatsForm" action="{{ url_for('statistics.get_data', id=0) }}" method="get">
+        <select name="deviceId" required onchange="">
+            <option disabled selected value> -- select a device -- </option>
         {% for device in devices %}
-            <option value="{{ device['description']}}">{{ device['description']}}</option>
+            <option value="{{ device['id']}}">{{ device['description']}}</option>
 
             {% if not loop.last %}
             {% endif %}
         {% endfor %}
-    </select>
+        </select>
     <input type="submit" value="Load Statistics!">
+    </form>
+
 {% endblock %}
