@@ -1,9 +1,10 @@
 from flask import (
-    Blueprint, render_template, g, request, flash, redirect, url_for, abort
+    Blueprint, render_template, g, request, flash, redirect, url_for, abort, current_app
 )
 
 from flaskr.auth import login_required
 from flaskr.db import get_db
+
 
 bp = Blueprint('statistics', __name__)
 
@@ -29,10 +30,10 @@ def get_data(id):
     cursor = db.execute(
         'SELECT sensor_reading, created FROM temperature'
         ' WHERE device_id = ?'
-        'LIMIT 150', (id,)
+        'LIMIT 50', (id,)
     ).fetchall()
 
-    for row in cursor:
-        data.append(list(row))
+    # for row in cursor:
+    #     data.append(list(row))
 
-    return data
+    return cursor

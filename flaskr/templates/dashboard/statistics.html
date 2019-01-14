@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block header %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <h1>{% block title %}Device Manager{% endblock %}</h1>
     <a class="action" href="{{ url_for('dashboard.index') }}">Back to Dashboard</a>
 {% endblock %}
@@ -18,5 +19,7 @@
         </select>
     <input type="submit" value="Load Statistics!">
     </form>
+
+    <div id="chart_div"></div>
 
 {% endblock %}
