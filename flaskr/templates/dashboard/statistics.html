@@ -1,33 +1,26 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <h1>{% block title %}Statistics{% endblock %}</h1>
     <a class="action" href="{{ url_for('dashboard.index') }}">Back to Dashboard</a>
 {% endblock %}
 
 {% block content %}
-    <form name="devices" action="stats/device" id="deviceStatsForm" method="get" onsubmit="formAction()">
+    {% if option is none: %}
+    <h3>Select the device you want to see a chart</h3>
+    <form name="devices" action="stats/device" id="deviceStatsForm" method="get">
         <select name="deviceId" required onchange="this.form.submit()">
-            {% if option is none: %}
-                <option disabled selected value> -- select a device -- </option>
-            {% endif %}
+            <option disabled selected value> -- select a device -- </option>
         {% for device in devices %}
-            {% if option ==  device['id']%}
-                <option value="{{ device['id']}}" selected>{{ device['description']}}</option>
-            {% else: %}
-                <option value="{{ device['id']}}">{{ device['description']}}</option>
-            {% endif %}
-
-            {% if not loop.last %}
-            {% endif %}
+            <option value="{{ device['id'] }}">{{ device['description']}}</option>
         {% endfor %}
         </select>
-    <input type="submit" value="Load Statistics!">
     </form>
+    {% endif %}
 
-    {% if option is not none: %}
+    {% if option %}
         {% include 'dashboard/stats_pie_chart.html' %}
+        <a class="action" href="{{ url_for('statistics.statistics') }}">Return</a>
     {% endif %}
 
 {% endblock %}

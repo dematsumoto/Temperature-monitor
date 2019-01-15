@@ -1,8 +1,18 @@
+{% block header %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="{{ url_for('static', filename='js/gchart.js') }}"></script>
+
+    <script type="text/javascript">
+        google.charts.load('current', {packages: ['corechart', 'line']});
+        google.charts.setOnLoadCallback(drawBasic);
+    </script>
+{% endblock %}
+
 {% block content %}
     {% if data|length %}
         <div id="chart_div"></div>
     {% else: %}
-        No data Available
+        <p>No Data Available.</p>
     {% endif %}
 
 {% endblock %}
