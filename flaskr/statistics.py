@@ -22,7 +22,7 @@ def get_data():
     current_app.logger.info(device_id)
     db = get_db()
     data = db.execute(
-        'SELECT sensor_reading, created FROM temperature'
+        'SELECT id, created, sensor_reading FROM temperature'
         ' WHERE device_id = ?'
         'LIMIT 50', (device_id,)
     ).fetchall()
@@ -32,7 +32,7 @@ def get_data():
 
     # return None  # render_template('dashboard/stats_pie_chart.html', data=cursor)
 
-    return render_template('dashboard/statistics.html', devices=_get_devices(), data=data, option=device_id)
+    return render_template('dashboard/stats_pie_chart.html', devices=_get_devices(), data=data, option=device_id)
 
 
 def _get_devices():

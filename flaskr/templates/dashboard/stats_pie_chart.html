@@ -1,11 +1,25 @@
+{% extends 'base.html' %}
+
 {% block header %}
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="{{ url_for('static', filename='js/gchart.js') }}"></script>
 
     <script type="text/javascript">
         google.charts.load('current', {packages: ['corechart', 'line']});
-        google.charts.setOnLoadCallback(drawBasic);
+
+        var chartData = [
+            {% for i in data %}
+                [parseInt("{{ i[0] }}"), "{{ i[2] }}"],
+            {% endfor %}
+        ]
+
+        google.charts.setOnLoadCallback(function(){drawBasic(chartData)});
+
+
     </script>
+
+    <h1>{% block title %}Statistics{% endblock %}</h1>
+    <a class="action" href="{{ url_for('dashboard.index') }}">Back to Dashboard</a>
 {% endblock %}
 
 {% block content %}
@@ -14,5 +28,6 @@
     {% else: %}
         <p>No Data Available.</p>
     {% endif %}
+    <a class="action" href="{{ url_for('statistics.statistics') }}">Return</a>
 
 {% endblock %}
