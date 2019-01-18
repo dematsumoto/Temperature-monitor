@@ -32,7 +32,10 @@ def get_data():
 
     # return None  # render_template('dashboard/stats_pie_chart.html', data=cursor)
 
-    return render_template('dashboard/stats_pie_chart.html', devices=_get_devices(), data=data, option=device_id)
+    return render_template('dashboard/stats_pie_chart.html',
+                           devices=_get_devices(),
+                           data=data,
+                           option=device_id)
 
 
 def _get_devices():
@@ -43,3 +46,12 @@ def _get_devices():
     ).fetchall()
 
     return devices
+
+
+def _get_device_index(devices_list, id):
+    # devices_list = []
+    # for device in devices:
+    #     devices_list.append(list(device))
+
+    return [ind for ind in range(len(devices_list)) if id in devices_list[ind]]
+

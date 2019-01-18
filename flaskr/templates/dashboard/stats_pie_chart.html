@@ -5,17 +5,20 @@
     <script src="{{ url_for('static', filename='js/gchart.js') }}"></script>
 
     <script type="text/javascript">
-        google.charts.load('current', {packages: ['corechart', 'line']});
+        {% if data|length %}
 
-        var chartData = [
-            {% for i in data %}
-                [parseInt("{{ i[0] }}"), "{{ i[2] }}"],
-            {% endfor %}
-        ]
+            google.charts.load('current', {packages: ['corechart']});
 
-        google.charts.setOnLoadCallback(function(){drawBasic(chartData)});
+            var chartData = [
+                ["Datetime", "{{ devices[0]['description'] }}" ],
+                {% for i in data %}
+                    [ "{{ i[1] }}", parseInt("{{ i[2] }}")],
+                {% endfor %}
+            ]
 
+            google.charts.setOnLoadCallback(function(){drawBasic(chartData)});
 
+        {% endif %}
     </script>
 
     <h1>{% block title %}Statistics{% endblock %}</h1>
