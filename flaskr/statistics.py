@@ -27,15 +27,15 @@ def get_data():
         'LIMIT 50', (device_id,)
     ).fetchall()
 
-    # for row in cursor:
-    #     data.append(list(row))
-
-    # return None  # render_template('dashboard/stats_pie_chart.html', data=cursor)
+    devices = _get_devices()
+    devices_dict = {}
+    for device in devices:
+        devices_dict[device['id']] = device['description']
 
     return render_template('dashboard/stats_pie_chart.html',
-                           devices=_get_devices(),
+                           devices=devices_dict,
                            data=data,
-                           option=device_id)
+                           option=int(device_id))
 
 
 def _get_devices():
@@ -47,11 +47,4 @@ def _get_devices():
 
     return devices
 
-
-def _get_device_index(devices_list, id):
-    # devices_list = []
-    # for device in devices:
-    #     devices_list.append(list(device))
-
-    return [ind for ind in range(len(devices_list)) if id in devices_list[ind]]
 

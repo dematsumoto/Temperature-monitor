@@ -16,7 +16,8 @@ def index():
         'SELECT t.id, t.sensor_reading, d.description, t.created'
         ' FROM temperature t JOIN device d ON t.device_id = d.id'
         ' JOIN user u ON u.id = d.owner_id'
-        ' WHERE u.id = ?', (g.user['id'],)
+        ' WHERE u.id = ?'
+        ' ORDER BY t.created DESC', (g.user['id'],)
     ).fetchall()
 
     return render_template('dashboard/index.html', temperatures=temperatures)

@@ -10,7 +10,7 @@
             google.charts.load('current', {packages: ['corechart']});
 
             var chartData = [
-                ["Datetime", "{{ devices[0]['description'] }}" ],
+                ["Datetime", "{{ devices.get(option) }}" ],
                 {% for i in data %}
                     [ "{{ i[1] }}", parseInt("{{ i[2] }}")],
                 {% endfor %}
