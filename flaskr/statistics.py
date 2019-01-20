@@ -24,7 +24,6 @@ def get_data():
     data = db.execute(
         'SELECT id, created, sensor_reading FROM temperature'
         ' WHERE device_id = ?'
-        ' ORDER BY created DESC'
         ' LIMIT 100', (device_id,)
     ).fetchall()
 
