@@ -60,3 +60,8 @@ def test_delete_nonexistent_device(client, auth):
     assert b'Device id 9000 doesn\'t exist.' in response.data
 
 
+def test_delete_login_required(client):
+    response = client.post('/999/delete')
+    assert response.headers['Location'] == 'http://localhost/auth/login'
+
+
