@@ -2,7 +2,7 @@
 
 ### What is this repository for? ###
 
-* This is a web application for personal use. The purpose of this project is to use a Raspberry Pi to collect data from real word (temperature sensor, I/O states) and display it though a web browser.
+* This is a web application for personal use. The purpose of this project is to use a Raspberry Pi to collect data from real word (temperature sensor, I/O states) and display it through a web browser.
 * The data are gathered using a Raspberry Pi and stored into a SQLite database. The Restful web service, then, provides the controllers and views for the user to access the data and Charts of the sensors. 
 
 
