@@ -41,3 +41,5 @@ Running the Application:
 flask run
 ```
 The application will start at `http://localhost:5000`
+
+* Some screenshots from the application: [Login Screen](https://raw.githubusercontent.com/dematsumoto/dematsumoto.github.io/master/images/temp_monitor_demo/chart.png), [Temperature Readings](https://raw.githubusercontent.com/dematsumoto/dematsumoto.github.io/master/images/temp_monitor_demo/dashobard.png), [Device Manager](https://raw.githubusercontent.com/dematsumoto/dematsumoto.github.io/master/images/temp_monitor_demo/device_manager.png), [Chart](https://raw.githubusercontent.com/dematsumoto/dematsumoto.github.io/master/images/temp_monitor_demo/chart.png)
